@@ -5,7 +5,6 @@ using System.Collections;
 public class Character : MonoBehaviour 
 {
     // Public Fields
-    public float moveAccel = 50;
     public Skill attackSkill = new Skill();
 
 	public Rigidbody2D CharacterRigidBody;
@@ -70,12 +69,11 @@ public class Character : MonoBehaviour
 	{
 		CharacterRigidBody.velocity += (new Vector2 (0, jumpSpeed));
 	}
-}
 
     // Actions
     public virtual void Attack()
     {
-        
+
     }
 
     public virtual int GetBasicDamage()
@@ -84,3 +82,4 @@ public class Character : MonoBehaviour
 
         return 0;
     }
+}
