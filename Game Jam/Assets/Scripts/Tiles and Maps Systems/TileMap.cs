@@ -21,11 +21,11 @@ public class TileMap : MonoBehaviour
 	private float screenHeight;
 	private uint numOfTile_ScreenWidth;
 	private uint numOfTile_ScreenHeight;
+	private float scrollOffset;
 
 	#region Event Functions
 
-	// Use this for initialization
-	void Start ()
+	void Awake ()
 	{
 		map = null;
 		mapWidth = mapHeight = 0.0f;
@@ -33,6 +33,13 @@ public class TileMap : MonoBehaviour
 		screenWidth = screenHeight = 0.0f;
 		numOfTile_ScreenWidth = numOfTile_ScreenHeight = 0;
 		tileSize = 0;
+		scrollOffset = 0.0f;
+	}
+
+	// Use this for initialization
+	void Start ()
+	{
+
 	}
 	
 	// Update is called once per frame

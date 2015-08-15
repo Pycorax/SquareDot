@@ -46,12 +46,12 @@
 	</Reference>
   </ItemGroup>
   <ItemGroup>
-     <Compile Include="Assets\Scripts\Character.cs" />
+     <Compile Include="Assets\Scripts\Character\Character.cs" />
      <Compile Include="Assets\Scripts\LevelController.cs" />
-     <Compile Include="Assets\Scripts\Map.cs" />
      <Compile Include="Assets\Scripts\PlayerController.cs" />
-     <Compile Include="Assets\Scripts\Tile.cs" />
-     <Compile Include="Assets\Scripts\TileMap.cs" />
+     <Compile Include="Assets\Scripts\Tiles and Maps Systems\Map.cs" />
+     <Compile Include="Assets\Scripts\Tiles and Maps Systems\Tile.cs" />
+     <Compile Include="Assets\Scripts\Tiles and Maps Systems\TileMap.cs" />
  <Reference Include="UnityEngine.UI">
  <HintPath>C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>
  </Reference>
