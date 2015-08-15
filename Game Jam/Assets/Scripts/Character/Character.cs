@@ -1,26 +1,23 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 using System.Collections;
 
 public class Character : MonoBehaviour 
 {
+    // Public Fields
+    public float moveAccel = 50;
+    public Skill attackSkill = new Skill();
+
 	public Rigidbody2D CharacterRigidBody;
-	public float JumpSpeed = 2.5f;
-	public float MaxSpeed = 10f;
-    public float MoveAccel = 2.5f;
-	public float Gravity = 9.8f;
-	public float FrictionCoefficent = 2.0f;
-	public const float MaxHealth = 100.0f;
-	private float health = MaxHealth;
+	public float jumpSpeed = 2.5f;
+	public float maxSpeed = 10f;
+    public float moveAccel = 10f;
+	public float gravity = 9.8f;
+	public float frictionCoefficent = 2.0f;
 
-	void Awake()
-	{
-		CharacterAwake ();
-	}
-
-	protected void CharacterAwake()
-	{
+	void Awake(){
 		CharacterRigidBody = GetComponent<Rigidbody2D> ();
-		CharacterRigidBody.position = transform.position;
+		CharacterRigidBody.position = Vector2.zero;
 		CharacterRigidBody.mass = 1;
 	}
 
@@ -33,20 +30,14 @@ public class Character : MonoBehaviour
 	// Update is called once per frame
 	void Update () 
     {
-		CharacterUpdate ();
-	}
-
-	// Update is called once per frame
-	protected void CharacterUpdate () 
-	{
 		//Calculate the friction force
-		float frictionForce = CharacterRigidBody.mass * Gravity * FrictionCoefficent;
+		float frictionForce = CharacterRigidBody.mass * gravity * frictionCoefficent;
 		Vector2 normalizedVelocity = CharacterRigidBody.velocity.normalized;
 		float frictionIn_X_Axis = -normalizedVelocity.x * frictionForce;
-		
+
 		//Update character velocity based on opposite forces
-		CharacterRigidBody.velocity += new Vector2 (frictionIn_X_Axis, -Gravity) * Time.deltaTime;
-		
+		CharacterRigidBody.velocity += new Vector2 (frictionIn_X_Axis, -gravity) * Time.deltaTime;
+
 		//Change x to 0 when x is close to 0
 		if (CharacterRigidBody.velocity.x < 0.5f && CharacterRigidBody.velocity.x > -0.5f) {
 			CharacterRigidBody.velocity = new Vector2 ( 0, CharacterRigidBody.velocity.y);
@@ -56,27 +47,40 @@ public class Character : MonoBehaviour
     // Initialization
     public void Init(float movementAcceleration)
     {
-        MoveAccel = movementAcceleration;
+        moveAccel = movementAcceleration;
     }
 
     // Movement
     public void MoveLeft()
     {
-        CharacterRigidBody.velocity += (new Vector2(-MoveAccel, 0) * Time.deltaTime);
-		if (CharacterRigidBody.velocity.x < - MaxSpeed) {
-			CharacterRigidBody.velocity = new Vector2(-MaxSpeed, CharacterRigidBody.velocity.y);
+        CharacterRigidBody.velocity += (new Vector2(-moveAccel, 0) * Time.deltaTime);
+		if (CharacterRigidBody.velocity.x < - maxSpeed) {
+			CharacterRigidBody.velocity = new Vector2(-maxSpeed, CharacterRigidBody.velocity.y);
 		}
     }
 
     public void MoveRight()
     {
-        CharacterRigidBody.velocity += (new Vector2(MoveAccel, 0) * Time.deltaTime);
-		if(CharacterRigidBody.velocity.x > MaxSpeed) {
-			CharacterRigidBody.velocity = new Vector2(MaxSpeed, CharacterRigidBody.velocity.y);
+        CharacterRigidBody.velocity += (new Vector2(moveAccel, 0) * Time.deltaTime);
+		if(CharacterRigidBody.velocity.x > maxSpeed) {
+			CharacterRigidBody.velocity = new Vector2(maxSpeed, CharacterRigidBody.velocity.y);
 		}
     }
 	public void Jump()
 	{
-		CharacterRigidBody.velocity += (new Vector2 (0, JumpSpeed));
+		CharacterRigidBody.velocity += (new Vector2 (0, jumpSpeed));
 	}
 }
+
+    // Actions
+    public virtual void Attack()
+    {
+        
+    }
+
+    public virtual int GetBasicDamage()
+    {
+        throw new NotImplementedException();
+
+        return 0;
+    }

@@ -10,7 +10,7 @@ public class PlayerController : MonoBehaviour {
 
 	void Awake() 
     {
-		Character = GetComponent<Character> ();
+		Character = GetComponent<Player> ();
 	    Character.Init(MoveAccel);
 	}
 	// Use this for initialization

@@ -1,0 +1,8 @@
+﻿public enum ELEMENT_TYPE
+{
+    NORMAL_ELEMENT,
+    FIRE_ELEMENT,
+    WATER_ELEMENT,
+    AIR_ELEMENT,
+    NUM_ELEMENTS
+};
