@@ -51,6 +51,7 @@ public class Enemy : Character, ICharacterTag
 		    if (AttackSkill.SkillReady)
 		    {
 		        Attack();
+                Debug.Log("Enemy Attacked!");
 		    }
 	    }
 

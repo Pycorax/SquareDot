@@ -7,14 +7,14 @@ using System.Globalization;
 public class Map : MonoBehaviour
 {
     // Public Fields
-    public TileMap TileMap { get { return tileMap; } }
+    public TileMap LevelTileMap { get { return levelTileMap; } }
     
     // Public Constants
     public const string MAP_FILE_EXTENSION = "*.map";
 
     // Private Properties
     // TODO: Add a List of Enemies
-    private TileMap tileMap;
+    private TileMap levelTileMap;
 
     #region Event Functions
 
@@ -36,7 +36,7 @@ public class Map : MonoBehaviour
 
         public bool IsCompleted()
         {
-            throw new NotImplementedException();
+            //throw new NotImplementedException();
 
             return false;
         }
@@ -47,9 +47,11 @@ public class Map : MonoBehaviour
 
         public static Map LoadMap(string mapFilePath)
         {
-            throw new NotImplementedException();
+            Map result = new Map();
 
-            return new Map();
+            result.levelTileMap.LoadMap(mapFilePath, 32.0f, 18.0f, 1024.0f, 576.0f, 32.0f); 
+
+            return result;
         }
 
     #endregion

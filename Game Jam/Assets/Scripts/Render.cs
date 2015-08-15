@@ -7,20 +7,26 @@ public class Render : MonoBehaviour {
 
 	private List<GameObject> renderMap;
 
+    public GameObject placeholderTile;
+
 	private GameObject[] tileList = new GameObject[(int)TILE_TYPE.NUM_TILE];
+    private TileMap levelMap;
 
 	#region Event Functions
 
 	// Use this for initialization
 	void Start ()
 	{
-
+	    for (int i = 0; i < (int) TILE_TYPE.NUM_TILE; ++i)
+	    {
+	        tileList[i] = placeholderTile;
+	    }
 	}
 	
 	// Update is called once per frame
 	void Update ()
 	{
-	
+        RenderTileMap(levelMap);
 	}
 
 	#endregion
@@ -34,6 +40,8 @@ public class Render : MonoBehaviour {
 			renderMap.Add(new GameObject());
 			renderMap[i].SetActive(false);
 		}
+
+	    levelMap = map;
 	}
 
 	public void RenderTileMap(TileMap map)
@@ -69,16 +77,6 @@ public class Render : MonoBehaviour {
 				}
 			}
 		}
-	}
-
-	public void RenderPlayer() // Parameter: Player
-	{
-
-	}
-
-	public void RenderEnemy() // Parameter: Enemy list
-	{
-
 	}
 
 	#endregion

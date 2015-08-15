@@ -19,6 +19,9 @@ public class LevelController : MonoBehaviour
     // Current Level
     private Map currentMap;        // Reference to the Current Map
 
+    // Renderer
+    public Render renderer;
+
     #region Event Functions
 
         // Use this for initialization
@@ -80,11 +83,13 @@ public class LevelController : MonoBehaviour
             // Load all the Maps
             foreach (FileInfo file in filelList)
             {
+                string str = file.Name;
+
                 Debug.Log(file.Name);
                 // Load the map
-                //Map map = Map.LoadMap(file.Name);
+                Map map = Map.LoadMap(file.Name);
                 // Add the map into the list
-                // mapList.Add(map);
+                mapList.Add(map);
             }
 
             return mapList;
@@ -93,12 +98,14 @@ public class LevelController : MonoBehaviour
         private void loadLevel(Map map)
         {
             cleanLevel();
-            throw new NotImplementedException();
+            
+            // Initialize the Renderer
+            renderer.InitRenderMap(maps[level].LevelTileMap);
         }
 
         private void cleanLevel()
         {
-            throw new NotImplementedException();
+            //throw new NotImplementedException();
         }
 
         private void gotoNextLevel()
