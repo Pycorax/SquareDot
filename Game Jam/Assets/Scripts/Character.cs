@@ -1,9 +1,11 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class Character : MonoBehaviour {
+public class Character : MonoBehaviour 
+{
 
 	public Rigidbody2D CharacterRigidBody;
+    private float moveAccel = 50;
 
 	void Awake(){
 		CharacterRigidBody = GetComponent<Rigidbody2D> ();
@@ -12,12 +14,14 @@ public class Character : MonoBehaviour {
 	}
 
 	// Use this for initialization
-	void Start () {
+	void Start () 
+    {
 
 	}
 	
 	// Update is called once per frame
-	void Update () {
+	void Update () 
+    {
 		CharacterRigidBody.position += CharacterRigidBody.velocity * Time.deltaTime;
 		float dragForceMagnitude = (CharacterRigidBody.velocity.magnitude * CharacterRigidBody.velocity.magnitude) * CharacterRigidBody.drag;
 		Vector2 dragForceVector = dragForceMagnitude * -CharacterRigidBody.velocity.normalized;
@@ -27,4 +31,21 @@ public class Character : MonoBehaviour {
 			CharacterRigidBody.velocity = new Vector2 (0, 0);
 		}
 	}
+
+    // Initialization
+    public void Init(float movementAcceleration)
+    {
+        moveAccel = movementAcceleration;
+    }
+
+    // Movement
+    public void MoveLeft()
+    {
+        CharacterRigidBody.velocity += (new Vector2(-moveAccel, 0) * Time.deltaTime);
+    }
+
+    public void MoveRight()
+    {
+        CharacterRigidBody.velocity += (new Vector2(moveAccel, 0) * Time.deltaTime);
+    }
 }
