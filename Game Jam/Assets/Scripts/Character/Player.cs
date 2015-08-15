@@ -3,6 +3,10 @@ using System.Collections;
 
 public sealed class Player : Character 
 {
+	void Awake()
+	{
+		base.CharacterAwake ();
+	}
     // Advanced Attack (Dependent on Element)
     [Tooltip("Secondary Skill")] public AdvancedSkill Attack2Skill;
 

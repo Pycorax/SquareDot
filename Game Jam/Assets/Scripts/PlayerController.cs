@@ -3,7 +3,7 @@ using System.Collections;
 
 public class PlayerController : MonoBehaviour {
 	
-	public Character Character;
+	public Player Character;
 	public const int MoveAccel = 50;
 	public const float MAXSPEED = 25.0f;
 	public static bool IsSpacePressed = false;
@@ -13,6 +13,7 @@ public class PlayerController : MonoBehaviour {
 		Character = GetComponent<Player> ();
 	    Character.Init(MoveAccel);
 	}
+
 	// Use this for initialization
 	void Start () 
     {
