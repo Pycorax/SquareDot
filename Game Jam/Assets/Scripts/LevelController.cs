@@ -59,6 +59,12 @@ public class LevelController : MonoBehaviour
             }
         }
 
+        // Update the Renderer
+        void LateUpdate()
+        {
+            //TODO: Run the Renderer class         
+        }
+
     #endregion
 
     #region Member Functions

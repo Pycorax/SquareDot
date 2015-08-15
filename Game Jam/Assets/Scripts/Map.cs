@@ -4,11 +4,17 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Globalization;
 
-public class Map : MonoBehaviour 
+public class Map : MonoBehaviour
 {
-    // TODO: Add the variable that holds the Map
-    // TODO: Add a List of Enemies
+    // Public Fields
+    public TileMap TileMap { get { return tileMap; } }
+    
+    // Public Constants
     public const string MAP_FILE_EXTENSION = "*.map";
+
+    // Private Properties
+    // TODO: Add a List of Enemies
+    private TileMap tileMap;
 
     #region Event Functions
 
