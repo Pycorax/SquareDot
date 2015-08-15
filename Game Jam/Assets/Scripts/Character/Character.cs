@@ -8,11 +8,13 @@ public class Character : MonoBehaviour
     public Skill attackSkill = new Skill();
 
 	public Rigidbody2D CharacterRigidBody;
+	public const float MaxHealth = 100f;
 	public float JumpSpeed = 2.5f;
 	public float MaxSpeed = 10f;
     public float MoveAccel = 2.5f;
 	public float Gravity = 9.8f;
 	public float FrictionCoefficent = 2.0f;
+	public float Health = MaxHealth;
 
 	void Awake ()
 	{
@@ -24,7 +26,6 @@ public class Character : MonoBehaviour
 		CharacterRigidBody = GetComponent<Rigidbody2D> ();
 		CharacterRigidBody.position = transform.position;
 		CharacterRigidBody.mass = 1;
-
 	}
 
 	// Use this for initialization
@@ -87,6 +88,14 @@ public class Character : MonoBehaviour
     {
 
     }
+
+	public virtual void TakeDamage(float Damage)
+	{
+		Health -= Damage;
+		if (Health <= 0) {
+			// Character dies set active to false
+		}
+	}
 
     public virtual int GetBasicDamage()
     {
