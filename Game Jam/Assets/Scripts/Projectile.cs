@@ -1,6 +1,10 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+/*
+ * The object should have uniform scale in all dimensions
+ */
+
 public class Projectile : MonoBehaviour 
 {
     // Public Fields
