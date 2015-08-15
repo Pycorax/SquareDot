@@ -5,10 +5,11 @@ public class Character : MonoBehaviour
 {
 
 	public Rigidbody2D CharacterRigidBody;
-	private float maxSpeed = 10;
-    private float moveAccel = 10;
-	private float gravity = 9.8f;
-	private float frictionCoefficent = 2.0f;
+	public float jumpSpeed = 2.5f;
+	public float maxSpeed = 10f;
+    public float moveAccel = 10f;
+	public float gravity = 9.8f;
+	public float frictionCoefficent = 2.0f;
 
 	void Awake(){
 		CharacterRigidBody = GetComponent<Rigidbody2D> ();
@@ -31,7 +32,7 @@ public class Character : MonoBehaviour
 		float frictionIn_X_Axis = -normalizedVelocity.x * frictionForce;
 
 		//Update character velocity based on opposite forces
-		CharacterRigidBody.velocity += new Vector2 (frictionIn_X_Axis, 0) * Time.deltaTime;
+		CharacterRigidBody.velocity += new Vector2 (frictionIn_X_Axis, -gravity) * Time.deltaTime;
 
 		//Change x to 0 when x is close to 0
 		if (CharacterRigidBody.velocity.x < 0.5f && CharacterRigidBody.velocity.x > -0.5f) {
@@ -61,4 +62,8 @@ public class Character : MonoBehaviour
 			CharacterRigidBody.velocity = new Vector2(maxSpeed, CharacterRigidBody.velocity.y);
 		}
     }
+	public void Jump()
+	{
+		CharacterRigidBody.velocity += (new Vector2 (0, jumpSpeed));
+	}
 }
