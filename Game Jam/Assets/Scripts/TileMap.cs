@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.IO;
+using System;
 
 public class TileMap : MonoBehaviour
 {
@@ -27,9 +28,9 @@ public class TileMap : MonoBehaviour
 	void Start ()
 	{
 		map = null;
-		mapWidth = mapHeight = 0.f;
+		mapWidth = mapHeight = 0.0f;
 		numOfTile_MapWidth = numOfTile_MapHeight = 0;
-		screenWidth = screenHeight = 0.f;
+		screenWidth = screenHeight = 0.0f;
 		numOfTile_ScreenWidth = numOfTile_ScreenHeight = 0;
 		tileSize = 0;
 	}
@@ -47,20 +48,20 @@ public class TileMap : MonoBehaviour
 	void LoadMap(string filepath, float mapWidth, float mapHeight, float screenWidth, float screenHeight, float tileSize)
 	{
 		// Assign map variables
-		this->mapWidth = mapWidth;
-		this->mapHeight = mapHeight;
-		this->numOfTile_MapWidth = mapWidth / tileSize;
-		this->numOfTile_MapHeight = mapHeight / tileSize;
+		this.mapWidth = mapWidth;
+		this.mapHeight = mapHeight;
+		this.numOfTile_MapWidth = Convert.ToUInt32(mapWidth / tileSize);
+		this.numOfTile_MapHeight = Convert.ToUInt32(mapHeight / tileSize);
 
 		// Assign screen variables
-		this->screenWidth = screenWidth;
-		this->screenHeight = screenHeight;
-		this->numOfTile_ScreenWidth = screenWidth / tileSize;
-		this->numOfTile_ScreenHeight = screenHeight / tileSize;
+		this.screenWidth = screenWidth;
+		this.screenHeight = screenHeight;
+		this.numOfTile_ScreenWidth = Convert.ToUInt32(screenWidth / tileSize);
+		this.numOfTile_ScreenHeight = Convert.ToUInt32(screenHeight / tileSize);
 
-		this->tileSize = tileSize;
+		this.tileSize = tileSize;
 
-		if (LoadFile (filepath, screenWidth, screenHeight))
+		if (LoadFile (filepath))
 		{
 			Debug.Log (filepath + " has been loaded successfully!");
 		}
@@ -72,9 +73,7 @@ public class TileMap : MonoBehaviour
 
 	bool LoadFile(string filepath)
 	{
-		uint rowCounter = 0, colCounter = 0;
-		int numOfScreen_Width = Mathf.CeilToInt(this->mapWidth / screenWidth);
-		int numOfScreen_Height = Mathf.CeilToInt(this->mapHeight / screenHeight);
+		int rowCounter = 0, colCounter = 0;
 		string line;	// Line of text from file
 		string[] token;	// Individual token from line
 		StreamReader file = new StreamReader(File.OpenRead(filepath)); // Open file
@@ -84,7 +83,7 @@ public class TileMap : MonoBehaviour
 			string[] tokens = line.Split(','); // Split col into array of strings
 			if (line.StartsWith("//")) // Commented line check for length error
 			{
-				if (tokens.Length != this->numOfTile_MapWidth)
+				if (tokens.Length != this.numOfTile_MapWidth)
 				{
 					return false;
 				}
@@ -93,7 +92,9 @@ public class TileMap : MonoBehaviour
 			{
 				foreach(string element in tokens)
 				{
-					map[rowCounter][colCounter++] = new Tile( (Tile.TILE_TYPE)element );
+					Tile newTile = new Tile();
+					newTile.Set((TILE_TYPE)Convert.ToUInt32(element));
+					map[rowCounter][colCounter++] = newTile;
 				}
 				colCounter = 0;	// Reset columns
 				++rowCounter;	// Next row
