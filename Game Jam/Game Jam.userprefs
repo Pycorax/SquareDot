@@ -4,13 +4,16 @@
     <Files>
       <File FileName="..\..\..\OneDrive\School\Year 2 Semester 1\Game Level Design\Assignment 2\Part 2\GLD-Team-XXX\Assets\scripts\PlayerController.cs" Line="1" Column="1" />
       <File FileName="..\..\..\OneDrive\School\Year 2 Semester 1\Game Level Design\Assignment 2\Part 2\GLD-Team-XXX\Assets\scripts\Cameras\CameraScript.cs" Line="57" Column="55" />
-      <File FileName="Assets\Scripts\LevelController.cs" Line="20" Column="31" />
-      <File FileName="Assets\Scripts\Tiles and Maps Systems\Map.cs" Line="46" Column="24" />
-      <File FileName="Assets\Scripts\Render.cs" Line="50" Column="69" />
+      <File FileName="Assets\Scripts\LevelController.cs" Line="125" Column="1" />
+      <File FileName="Assets\Scripts\Tiles and Maps Systems\Map.cs" Line="59" Column="1" />
+      <File FileName="Assets\Scripts\Render.cs" Line="49" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore>
+      <Breakpoint file="C:\Users\KahWei\Git\SquareDot\Game Jam\Assets\Scripts\Tiles and Maps Systems\Map.cs" line="50" />
+      <Breakpoint file="C:\Users\KahWei\Git\SquareDot\Game Jam\Assets\Scripts\Tiles and Maps Systems\Map.cs" line="52" />
+      <Breakpoint file="C:\Users\KahWei\Git\SquareDot\Game Jam\Assets\Scripts\Tiles and Maps Systems\Map.cs" line="54" />
       <Breakpoint file="C:\Users\KahWei\Git\SquareDot\Game Jam\Assets\Scripts\Tiles and Maps Systems\Map.cs" line="48" />
     </BreakpointStore>
   </MonoDevelop.Ide.DebuggingService.Breakpoints>

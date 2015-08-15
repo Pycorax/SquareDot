@@ -28,7 +28,7 @@ public class Skill : MonoBehaviour
     public float SetCooldown = 0.0f;
     // -- Projectile
     [Tooltip("A GameObject with a Projectile script that deals damage. It should have a uniform scale in all dimensions.")]
-    public GameObject DamageGameObject;
+    public Projectile DamageGameObject;
     // -- Piercing
     [Tooltip("When set to true, a piercing skill can hit more than 1 target.")]
     public bool SetPiercing = false;
