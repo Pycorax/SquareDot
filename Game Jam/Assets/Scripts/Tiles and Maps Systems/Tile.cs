@@ -6,11 +6,14 @@ public enum TILE_TYPE
 	TILE_NONE = 0,	// Air
 	TILE_FLOOR_1,	// Top part of tile
 	TILE_FLOOR_2,	// Supporting tile for floor_1
-	NUM_TILE,		// Total number of tile types
+	NUM_TILE		// Total number of tile types
 };
 
 public class Tile : MonoBehaviour
 {
+	// Public Fields
+	public TILE_TYPE Type{get{return type;}}
+
 	// Variables
 	private TILE_TYPE type;
 
