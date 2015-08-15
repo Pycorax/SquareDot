@@ -14,7 +14,7 @@ public class Map : MonoBehaviour
 
     // Private Properties
     // TODO: Add a List of Enemies
-    private TileMap levelTileMap;
+    private TileMap levelTileMap = new TileMap();
 
     #region Event Functions
 

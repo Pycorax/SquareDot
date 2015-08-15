@@ -83,11 +83,11 @@ public class LevelController : MonoBehaviour
             // Load all the Maps
             foreach (FileInfo file in filelList)
             {
-                string str = file.Name;
+                string filePath = folderDir + "/" + file.Name;
 
-                Debug.Log(file.Name);
+                Debug.Log(filePath);
                 // Load the map
-                Map map = Map.LoadMap(file.Name);
+                Map map = Map.LoadMap(filePath);
                 // Add the map into the list
                 mapList.Add(map);
             }
