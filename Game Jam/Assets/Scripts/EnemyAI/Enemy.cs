@@ -11,7 +11,6 @@ public class Enemy : Character, ICharacterTag
 	public Vector2 FacingNormal = new Vector2(1 ,0);
 	public const float ChangeFacingMaxTimer = 2.5f;
 	public float ChangeFacingTimer = ChangeFacingMaxTimer;
-	public Skill AttackSkill;
 	public bool ChangeFacing = false;
 
     #region Event Functions

@@ -21,6 +21,12 @@ public sealed class Player : Character, ICharacterTag
             base.CharacterAwake();
         }
 
+        void Update()
+        {
+            AttackSkill.UpdateCooldown();
+            Attack2Skill.UpdateCooldown();
+        }
+
     #endregion
 
     #region Member Functions

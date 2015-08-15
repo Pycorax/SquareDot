@@ -57,7 +57,7 @@ public class Skill : MonoBehaviour
 	// Update is called once per frame
 	void Update ()
 	{
-	    lastUsed += Time.deltaTime;
+	    UpdateCooldown();
 	}
 
     public void Init(float _speed, Vector3 _scale, int _damage, ELEMENT_TYPE _element, float _range, float _coolDown, bool _piercing)
@@ -88,5 +88,10 @@ public class Skill : MonoBehaviour
         }
 
         return false;
+    }
+
+    public void UpdateCooldown()
+    {
+        lastUsed += Time.deltaTime;
     }
 }

@@ -10,7 +10,7 @@ public interface ICharacterTag
 public abstract class Character : MonoBehaviour
 {
     // Public Fields
-    public Skill attackSkill;
+    public Skill AttackSkill;
 	public const float MaxHealth = 100f;
 	public float JumpSpeed = 2.5f;
 	public float MaxSpeed = 10f;
@@ -44,7 +44,8 @@ public abstract class Character : MonoBehaviour
 	void Update () 
     {
 		CharacterUpdate ();
-	}
+        AttackSkill.UpdateCooldown();
+    }
 
 	protected void CharacterUpdate()
 	{
