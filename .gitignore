@@ -3,5 +3,12 @@ Game Jam/Library/metadata/
 Game Jam/obj/Debug/Assembly-CSharp-vs.csprojResolveAssemblyReference.cache
 Game Jam/obj/Debug/DesignTimeResolveAssemblyReferencesInput.cache
 Game Jam/Library/
-*.user
 *.orig
+*.userprefs
+*.csproj
+*.pidb
+*.suo
+*.sln*
+*.user
+*.unityproj
+*.booproj

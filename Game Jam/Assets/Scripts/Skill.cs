@@ -23,7 +23,7 @@ public class Skill : MonoBehaviour
     // -- CoolDown
     public float SetCooldown = 0.0f;
     // -- Projectile
-    [Tooltip("A GameObject with a Projectile script that deals damage.")]
+    [Tooltip("A GameObject with a Projectile script that deals damage. It should have a uniform scale in all dimensions.")]
     public GameObject DamageGameObject;
     
     // Private Vars
