@@ -46,7 +46,7 @@ public class PlayerController : MonoBehaviour {
 		//Jump
 		if (Input.GetKey (KeyCode.Space) && !IsSpacePressed) {
 			IsSpacePressed = true;
-			Character.Jump();
+			//Character.Jump();
 		}
 		if (!Input.GetKey (KeyCode.Space) && IsSpacePressed) {
 			IsSpacePressed = false;

@@ -5,7 +5,10 @@ public class Character : MonoBehaviour
 {
 
 	public Rigidbody2D CharacterRigidBody;
-    private float moveAccel = 50;
+	private float maxSpeed = 10;
+    private float moveAccel = 10;
+	private float gravity = 9.8f;
+	private float frictionCoefficent = 2.0f;
 
 	void Awake(){
 		CharacterRigidBody = GetComponent<Rigidbody2D> ();
@@ -22,13 +25,17 @@ public class Character : MonoBehaviour
 	// Update is called once per frame
 	void Update () 
     {
-		CharacterRigidBody.position += CharacterRigidBody.velocity * Time.deltaTime;
-		float dragForceMagnitude = (CharacterRigidBody.velocity.magnitude * CharacterRigidBody.velocity.magnitude) * CharacterRigidBody.drag;
-		Vector2 dragForceVector = dragForceMagnitude * -CharacterRigidBody.velocity.normalized;
-		CharacterRigidBody.velocity += dragForceVector;
+		//Calculate the friction force
+		float frictionForce = CharacterRigidBody.mass * gravity * frictionCoefficent;
+		Vector2 normalizedVelocity = CharacterRigidBody.velocity.normalized;
+		float frictionIn_X_Axis = -normalizedVelocity.x * frictionForce;
 
-		if (CharacterRigidBody.velocity.magnitude < 0.1) {
-			CharacterRigidBody.velocity = new Vector2 (0, 0);
+		//Update character velocity based on opposite forces
+		CharacterRigidBody.velocity += new Vector2 (frictionIn_X_Axis, 0) * Time.deltaTime;
+
+		//Change x to 0 when x is close to 0
+		if (CharacterRigidBody.velocity.x < 0.5f && CharacterRigidBody.velocity.x > -0.5f) {
+			CharacterRigidBody.velocity = new Vector2 ( 0, CharacterRigidBody.velocity.y);
 		}
 	}
 
@@ -42,10 +49,16 @@ public class Character : MonoBehaviour
     public void MoveLeft()
     {
         CharacterRigidBody.velocity += (new Vector2(-moveAccel, 0) * Time.deltaTime);
+		if (CharacterRigidBody.velocity.x < - maxSpeed) {
+			CharacterRigidBody.velocity = new Vector2(-maxSpeed, CharacterRigidBody.velocity.y);
+		}
     }
 
     public void MoveRight()
     {
         CharacterRigidBody.velocity += (new Vector2(moveAccel, 0) * Time.deltaTime);
+		if(CharacterRigidBody.velocity.x > maxSpeed) {
+			CharacterRigidBody.velocity = new Vector2(maxSpeed, CharacterRigidBody.velocity.y);
+		}
     }
 }
