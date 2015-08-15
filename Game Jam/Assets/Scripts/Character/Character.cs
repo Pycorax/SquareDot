@@ -2,19 +2,25 @@
 using UnityEngine;
 using System.Collections;
 
-public class Character : MonoBehaviour 
+public interface ICharacterTag
+{
+    string Tag { get; }
+}
+
+public abstract class Character : MonoBehaviour
 {
     // Public Fields
-    public Skill attackSkill = new Skill();
-
-	public Rigidbody2D CharacterRigidBody;
+    public Skill attackSkill;
 	public const float MaxHealth = 100f;
 	public float JumpSpeed = 2.5f;
 	public float MaxSpeed = 10f;
     public float MoveAccel = 2.5f;
 	public float Gravity = 9.8f;
 	public float FrictionCoefficent = 2.0f;
-	public float Health = MaxHealth;
+
+    // Private Variables
+    protected Rigidbody2D CharacterRigidBody;
+	private float Health = MaxHealth;
 
 	void Awake ()
 	{
@@ -84,14 +90,11 @@ public class Character : MonoBehaviour
 	}
 
     // Actions
-    public virtual void Attack()
-    {
+    public abstract void Attack();
 
-    }
-
-	public virtual void TakeDamage(float Damage)
+	public virtual void TakeDamage(float damage)
 	{
-		Health -= Damage;
+		Health -= damage;
 		if (Health <= 0) {
 			// Character dies set active to false
 		}

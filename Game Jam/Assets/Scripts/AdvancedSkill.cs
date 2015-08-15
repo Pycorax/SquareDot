@@ -6,7 +6,7 @@ public class AdvancedSkill : Skill
 {
     public ELEMENT_TYPE Element = ELEMENT_TYPE.NORMAL_ELEMENT;
 
-    public override bool Use(Vector3 usePosition, Vector3 useDirection)
+    public override bool Use(Vector3 usePosition, Vector3 useDirection, string userTag)
     {
         if (SkillReady)
         {

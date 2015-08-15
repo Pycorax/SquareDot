@@ -9,9 +9,13 @@ public class Skill : MonoBehaviour
     public float Speed{ get { return speed;}}
     public Vector3 Scale{ get { return scale; }}
     public float Range{ get { return range; }}
-    public bool SkillReady { get { return lastUsed > coolDown; } }
+    public bool Piercing { get { return piercing; } }
+    public bool SkillReady { get { return lastUsed > coolDown; } }      // Returns true if the skill is ready to be used (Cooled down)
 
-    // Public Vars to Expose to Inspector
+    /* 
+     * Public Vars to Expose to Inspector
+     *  - These Variables will never be used after Start() has been called
+     */
     // -- Transforms
     public float SetSpeed;
     public Vector3 SetScale;
@@ -25,6 +29,9 @@ public class Skill : MonoBehaviour
     // -- Projectile
     [Tooltip("A GameObject with a Projectile script that deals damage. It should have a uniform scale in all dimensions.")]
     public GameObject DamageGameObject;
+    // -- Piercing
+    [Tooltip("When set to true, a piercing skill can hit more than 1 target.")]
+    public bool SetPiercing = false;
     
     // Private Vars
     // -- Transforms
@@ -38,11 +45,13 @@ public class Skill : MonoBehaviour
     // -- CoolDown
     private float coolDown = 0.0f;
     protected float lastUsed = 0.0f;
+    // -- Piercing
+    private bool piercing = false;
 
 	// Use this for initialization
 	void Awake () 
     {
-	    Init(SetSpeed, SetScale, SetDamage, SetElement, SetRange, SetCooldown);
+	    Init(SetSpeed, SetScale, SetDamage, SetElement, SetRange, SetCooldown, SetPiercing);
 	}
 	
 	// Update is called once per frame
@@ -51,7 +60,7 @@ public class Skill : MonoBehaviour
 	    lastUsed += Time.deltaTime;
 	}
 
-    public void Init(float _speed, Vector3 _scale, int _damage, ELEMENT_TYPE _element, float _range, float _coolDown)
+    public void Init(float _speed, Vector3 _scale, int _damage, ELEMENT_TYPE _element, float _range, float _coolDown, bool _piercing)
     {
         speed = _speed;
         scale = _scale;
@@ -59,9 +68,10 @@ public class Skill : MonoBehaviour
         element = _element;
         range = _range;
         coolDown = _coolDown;
+        piercing = _piercing;
     }
 
-    public virtual bool Use(Vector3 usePosition, Vector3 useDirection)
+    public virtual bool Use(Vector3 usePosition, Vector3 useDirection, string userTag)
     {
         // If cooled down
         if (SkillReady)
@@ -71,6 +81,7 @@ public class Skill : MonoBehaviour
 
             // Set the Variables
             DamageGameObject.GetComponent<Projectile>().Fire(usePosition, useDirection, this);
+            DamageGameObject.tag = userTag;
             Object.Instantiate(DamageGameObject);
 
             return true;

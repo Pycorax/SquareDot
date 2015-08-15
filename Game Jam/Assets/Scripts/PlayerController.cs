@@ -1,12 +1,15 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class PlayerController : MonoBehaviour {
-	
-	public Player Character;
+public class PlayerController : MonoBehaviour 
+{	
+	// Public Fields
 	public const int MoveAccel = 50;
 	public const float MAXSPEED = 25.0f;
 	public static bool IsSpacePressed = false;
+
+    // Private Fields
+    private Player Character;
 
 	void Awake() 
     {
@@ -21,7 +24,8 @@ public class PlayerController : MonoBehaviour {
 	}
 	
 	// Update is called once per frame
-	void Update () {
+	void Update () 
+    {
 		//Move Up
 		if (Input.GetKey (KeyCode.W)) 
         {
@@ -45,11 +49,13 @@ public class PlayerController : MonoBehaviour {
 		}
 
 		//Jump
-		if (Input.GetKey (KeyCode.Space) && !IsSpacePressed) {
+		if (Input.GetKey (KeyCode.Space) && !IsSpacePressed) 
+        {
 			IsSpacePressed = true;
 			Character.Jump();
 		}
-		if (!Input.GetKey (KeyCode.Space) && IsSpacePressed) {
+		if (!Input.GetKey (KeyCode.Space) && IsSpacePressed) 
+        {
 			IsSpacePressed = false;
 		}
 	}
