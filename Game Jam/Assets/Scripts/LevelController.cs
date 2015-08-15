@@ -16,42 +16,96 @@ public class LevelController : MonoBehaviour
     private int level = 0;
     private List<Map> maps;
 
-    // Use this for initialization
-    void Awake()
-    {
-        level = startLevel;
-        maps = LoadMapList(mapFolderDirectory);
-    }
+    // Current Level
+    private Map currentMap;        // Reference to the Current Map
 
-    void Start () 
-    {
-	    // TODO: Load Level from File
-	}
-	
-	// Update is called once per frame
-	void Update () 
-    {
-	    // TODO: If winning condition, then go to next
-	}
+    #region Event Functions
 
-    List<Map> LoadMapList(string folderDir)
-    {
-        List<Map> mapList = new List<Map>();
-
-        // Find the Map Files
-        DirectoryInfo d = new DirectoryInfo(folderDir);
-        FileInfo[] filelList = d.GetFiles(Map.MAP_FILE_EXTENSION);
-
-        // Load all the Maps
-        foreach (FileInfo file in filelList)
+        // Use this for initialization
+        void Awake()
         {
-            Debug.Log(file.Name);
-            // Load the map
-            //Map map = Map.LoadMap(file.Name);
-            // Add the map into the list
-           // mapList.Add(map);
+            level = startLevel;
+            maps = LoadMapList(mapFolderDirectory);
         }
 
-        return mapList;
-    }
+        void Start()
+        {
+            // Load Level from File
+            try
+            {
+                currentMap = maps[level];
+                loadLevel(currentMap);
+            }
+            catch (NotImplementedException e)
+            {
+                Debug.Log("Not Implemented Yet!");
+            }
+        }
+
+        // Update is called once per frame
+        void Update()
+        {
+            try
+            {
+                if (currentMap.IsCompleted())
+                {
+                    // Go to next level
+                    gotoNextLevel();
+                }
+            }
+            catch (NotImplementedException e)
+            {
+                Debug.Log("Not Implemented Yet!");
+            }
+        }
+
+    #endregion
+
+    #region Member Functions
+
+        private List<Map> LoadMapList(string folderDir)
+        {
+            List<Map> mapList = new List<Map>();
+
+            // Find the Map Files
+            DirectoryInfo d = new DirectoryInfo(folderDir);
+            FileInfo[] filelList = d.GetFiles(Map.MAP_FILE_EXTENSION);
+
+            // Load all the Maps
+            foreach (FileInfo file in filelList)
+            {
+                Debug.Log(file.Name);
+                // Load the map
+                //Map map = Map.LoadMap(file.Name);
+                // Add the map into the list
+                // mapList.Add(map);
+            }
+
+            return mapList;
+        }
+
+        private void loadLevel(Map map)
+        {
+            cleanLevel();
+            throw new NotImplementedException();
+        }
+
+        private void cleanLevel()
+        {
+            throw new NotImplementedException();
+        }
+
+        private void gotoNextLevel()
+        {
+            level = Mathf.Clamp(++level, 0, maps.Count());
+            loadLevel(maps[level]);
+        }
+
+        private void gotoPrevLevel()
+        {
+            level = Mathf.Clamp(--level, 0, maps.Count());
+            loadLevel(maps[level]);
+        }
+
+    #endregion
 }
