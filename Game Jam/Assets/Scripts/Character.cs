@@ -4,6 +4,7 @@ using System.Collections;
 public class Character : MonoBehaviour {
 
 	public Rigidbody2D CharacterRigidBody;
+	public const int JumpSpeed = 50;
 
 	void Awake(){
 		CharacterRigidBody = GetComponent<Rigidbody2D> ();
@@ -23,8 +24,9 @@ public class Character : MonoBehaviour {
 		Vector2 dragForceVector = dragForceMagnitude * -CharacterRigidBody.velocity.normalized;
 		CharacterRigidBody.velocity += dragForceVector;
 
-		if (CharacterRigidBody.velocity.magnitude < 0.1) {
-			CharacterRigidBody.velocity = new Vector2 (0, 0);
-		}
+	}
+
+	public void Jump () {
+		CharacterRigidBody.velocity += new Vector2(0, Jump);
 	}
 }

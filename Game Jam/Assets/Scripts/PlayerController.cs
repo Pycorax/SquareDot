@@ -6,6 +6,7 @@ public class PlayerController : MonoBehaviour {
 	public Character Character;
 	public const int FORCE = 50;
 	public const float MAXSPEED = 25.0f;
+	public static bool IsSpacePressed = false;
 
 	void Awake() {
 		Character = GetComponent<Character> ();
@@ -26,6 +27,7 @@ public class PlayerController : MonoBehaviour {
 		else if (Input.GetKey (KeyCode.S)) {
 
 		}
+
 		//Move Right
 		if (Input.GetKey (KeyCode.D)) {
 			Character.CharacterRigidBody.velocity += (new Vector2(FORCE, 0) * Time.deltaTime);
@@ -42,6 +44,15 @@ public class PlayerController : MonoBehaviour {
 			{
 				Character.CharacterRigidBody.velocity = new Vector2(-MAXSPEED, Character.CharacterRigidBody.velocity.y);
 			}*/
+		}
+
+		//Jump
+		if (Input.GetKey (KeyCode.Space) && !IsSpacePressed) {
+			IsSpacePressed = true;
+			Character.Jump();
+		}
+		if (!Input.GetKey (KeyCode.Space) && IsSpacePressed) {
+			IsSpacePressed = false;
 		}
 	}
 }
